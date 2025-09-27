@@ -3,119 +3,968 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> [Vivekanand Mishra] - Futuristic Design Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> </head>
+    <title>Vivek - Digital Marketing Portfolio</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Layers */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-layer {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        .layer-1 {
+            background: radial-gradient(circle at 20% 80%, #00ffff 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #ff00ff 0%, transparent 50%);
+            animation: float1 20s ease-in-out infinite;
+        }
+
+        .layer-2 {
+            background: linear-gradient(45deg, transparent 30%, #0066ff 50%, transparent 70%);
+            animation: float2 15s ease-in-out infinite reverse;
+        }
+
+        .layer-3 {
+            background: conic-gradient(from 0deg at 50% 50%, #ff6600 0deg, transparent 60deg, #00ff66 120deg, transparent 180deg, #6600ff 240deg, transparent 300deg);
+            animation: rotate 30s linear infinite;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #00ffff, transparent),
+                radial-gradient(2px 2px at 40px 70px, #ff00ff, transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffff00, transparent),
+                radial-gradient(1px 1px at 130px 80px, #00ff00, transparent),
+                radial-gradient(2px 2px at 160px 30px, #ff0066, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: sparkle 8s linear infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translateX(-10px) translateY(-10px) scale(1); }
+            50% { transform: translateX(10px) translateY(10px) scale(1.1); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateX(10px) translateY(10px) rotate(0deg); }
+            50% { transform: translateX(-10px) translateY(-10px) rotate(180deg); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: translateY(0px); }
+            50% { opacity: 0.8; transform: translateY(-20px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid transparent;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a:hover {
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 100px;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.4));
+        }
+
+        .profile-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.4));
+        }
+
+        .profile-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .upload-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 4;
+            cursor: pointer;
+        }
+
+        .profile-container:hover .upload-overlay {
+            opacity: 1;
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .upload-text {
+            font-size: 0.9rem;
+            color: #00ffff;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #00ffff, #0066ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            100% { text-shadow: 0 0 30px rgba(255, 0, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.3); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image {
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .project-svg {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: cardRotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes cardRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .project-card h3 {
+            color: #00ffff;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            background: rgba(255, 0, 255, 0.2);
+            color: #ff00ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            border-color: #00ffff;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 50px 20px;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
 <body>
-    <div id="stars"></div> <div id="stars2"></div>
-    <div id="stars3"></div>
+    <!-- Animated Background -->
+    <div class="bg-container">
+        <div class="bg-layer layer-1"></div>
+        <div class="bg-layer layer-2"></div>
+        <div class="bg-layer layer-3"></div>
+        <div class="particles"></div>
+    </div>
 
-    <header class="main-header">
-        <div class="container">
-            <h1 class="logo">[Vivekanand Misra]</h1>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">VIVEK</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <section id="hero" class="hero-section">
-        <div class="container">
-            <p class="hero-pre-title">// Innovate. Design. Transform.</p>
-            <h2 class="hero-title">Crafting Tomorrow's <br>Digital Experiences.</h2>
-            <p class="hero-subtitle">
-                [Your Professional Title], specializing in [UI/UX, Product Design, Motion Graphics].
-            </p>
-            <a href="#portfolio" class="btn btn-primary">Explore My Work</a>
-            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-        </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I'm [Vivekanand Mishra], a visionary [Product & Marketing Analyst] with a passion for pushing creative boundaries and delivering cutting-edge design solutions. With [X years] of experience in [mention key area like UI/UX, interaction design, visual branding], I thrive on solving complex problems through elegant and intuitive design.
-                    </p>
-                    <p>
-                        My journey began with [brief origin story, e.g., a fascination with digital interfaces, art, technology]. Today, I leverage a blend of strategic thinking, technical proficiency, and artistic flair to craft experiences that are not just beautiful, but also highly functional and impactful. I believe in a user-centric approach, ensuring every pixel serves a purpose.
-                    </p>
-                    <a href="#contact" class="btn btn-outline">Let's Connect</a>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="profile-image">
+                    <div class="profile-container">
+                        <div class="profile-photo" id="profilePhoto">
+                            <svg viewBox="0 0 200 200" class="profile-svg" id="defaultAvatar">
+                                <defs>
+                                    <linearGradient id="profileGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#ff00ff;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#ffff00;stop-opacity:1" />
+                                    </linearGradient>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                        <feMerge> 
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                
+                                <!-- Inner circle background -->
+                                <circle cx="100" cy="100" r="80" fill="rgba(0,0,0,0.5)" stroke="rgba(0,255,255,0.3)" stroke-width="2"/>
+                                
+                                <!-- Avatar silhouette -->
+                                <g transform="translate(100,100)" filter="url(#glow)">
+                                    <!-- Head -->
+                                    <circle cx="0" cy="-20" r="25" fill="url(#profileGrad)" opacity="0.8"/>
+                                    
+                                    <!-- Body -->
+                                    <ellipse cx="0" cy="20" rx="35" ry="45" fill="url(#profileGrad)" opacity="0.7"/>
+                                    
+                                    <!-- Marketing elements -->
+                                    <rect x="-40" y="-10" width="8" height="8" fill="#00ffff" opacity="0.9">
+                                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                                    </rect>
+                                    <rect x="32" y="-5" width="6" height="6" fill="#ff00ff" opacity="0.9">
+                                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                                    </rect>
+                                    <circle cx="-35" cy="30" r="3" fill="#ffff00" opacity="0.9">
+                                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="38" cy="25" r="4" fill="#00ff00" opacity="0.9">
+                                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- Floating particles -->
+                                <circle cx="50" cy="50" r="2" fill="#00ffff">
+                                    <animateTransform attributeName="transform" type="translate" values="0,0;10,-10;0,0" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="150" cy="60" r="1.5" fill="#ff00ff">
+                                    <animateTransform attributeName="transform" type="translate" values="0,0;-8,12;0,0" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="60" cy="150" r="2.5" fill="#ffff00">
+                                    <animateTransform attributeName="transform" type="translate" values="0,0;15,5;0,0" dur="3.5s" repeatCount="indefinite"/>
+                                </circle>
+                            </svg>
+                        </div>
+                        
+                        <!-- Animated border -->
+                        <svg class="profile-border" viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#profileGrad)" stroke-width="3" opacity="0.8">
+                                <animate attributeName="stroke-dasharray" values="0 600;300 300;0 600" dur="4s" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                        
+                        <!-- Upload button -->
+                        <div class="upload-overlay" onclick="document.getElementById('imageUpload').click()">
+                            <div class="upload-icon">📷</div>
+                            <div class="upload-text">Click to upload photo</div>
+                        </div>
+                        
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                    </div>
                 </div>
-                <div class="about-image">
-                    <img src="images/your-profile-pic.png" alt="Your Profile Picture" class="profile-glow">
+                <h1>Vivek</h1>
+                <p>Digital Marketing Specialist & AI Automation Expert</p>
+                <a href="#projects" class="cta-button">Explore My Work</a>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <svg viewBox="0 0 300 200" class="project-svg">
+                            <defs>
+                                <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#0066ff;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <!-- AI Brain -->
+                            <circle cx="150" cy="100" r="60" fill="none" stroke="#00ffff" stroke-width="2" opacity="0.6"/>
+                            <circle cx="150" cy="100" r="40" fill="none" stroke="#ff00ff" stroke-width="2" opacity="0.8">
+                                <animate attributeName="r" values="40;45;40" dur="3s" repeatCount="indefinite"/>
+                            </circle>
+                            
+                            <!-- Marketing Icons -->
+                            <g transform="translate(150,100)">
+                                <!-- Email -->
+                                <rect x="-50" y="-30" width="20" height="15" fill="#00ffff" rx="2">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                                </rect>
+                                <polygon points="-50,-30 -40,-20 -30,-30" fill="#ffffff"/>
+                                
+                                <!-- Social Media -->
+                                <circle cx="40" cy="-25" r="8" fill="#ff00ff">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <text x="40" y="-20" text-anchor="middle" fill="white" font-size="8">f</text>
+                                
+                                <!-- Analytics -->
+                                <rect x="-45" y="20" width="25" height="15" fill="#ffff00" rx="2">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                </rect>
+                                <rect x="-42" y="23" width="3" height="9" fill="#000"/>
+                                <rect x="-37" y="26" width="3" height="6" fill="#000"/>
+                                <rect x="-32" y="24" width="3" height="8" fill="#000"/>
+                                
+                                <!-- Automation Gears -->
+                                <circle cx="35" cy="25" r="10" fill="none" stroke="#00ff00" stroke-width="2">
+                                    <animateTransform attributeName="transform" type="rotate" values="0 35 25;360 35 25" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="35" cy="25" r="6" fill="none" stroke="#00ff00" stroke-width="1"/>
+                            </g>
+                            
+                            <!-- Data Flow -->
+                            <path d="M50 100 Q100 80 150 100 Q200 120 250 100" fill="none" stroke="url(#aiGrad)" stroke-width="2">
+                                <animate attributeName="stroke-dasharray" values="0 300;150 150;0 300" dur="4s" repeatCount="indefinite"/>
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>AI Automation in Marketing</h3>
+                    <p>Intelligent marketing automation system that leverages AI to optimize campaigns, personalize content, and automate customer journeys across multiple channels.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Marketing APIs</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <svg viewBox="0 0 300 200" class="project-svg">
+                            <defs>
+                                <linearGradient id="agentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00ffff;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Customer Service Bot -->
+                            <circle cx="150" cy="80" r="35" fill="url(#agentGrad)" opacity="0.8"/>
+                            
+                            <!-- Bot Face -->
+                            <circle cx="140" cy="70" r="4" fill="white"/>
+                            <circle cx="160" cy="70" r="4" fill="white"/>
+                            <path d="M135 90 Q150 100 165 90" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            
+                            <!-- Communication Lines -->
+                            <g>
+                                <line x1="50" y1="50" x2="120" y2="65" stroke="#00ffff" stroke-width="2">
+                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                                </line>
+                                <circle cx="40" cy="45" r="8" fill="#00ffff" opacity="0.7"/>
+                                <text x="40" y="50" text-anchor="middle" fill="white" font-size="10">👤</text>
+                                
+                                <line x1="180" y1="65" x2="250" y2="50" stroke="#ff00ff" stroke-width="2">
+                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                                </line>
+                                <circle cx="260" cy="45" r="8" fill="#ff00ff" opacity="0.7"/>
+                                <text x="260" y="50" text-anchor="middle" fill="white" font-size="10">👤</text>
+                            </g>
+                            
+                            <!-- Knowledge Base -->
+                            <rect x="120" y="130" width="60" height="40" fill="rgba(255,255,0,0.3)" stroke="#ffff00" stroke-width="2" rx="5"/>
+                            <text x="150" y="145" text-anchor="middle" fill="#ffff00" font-size="10">Knowledge</text>
+                            <text x="150" y="158" text-anchor="middle" fill="#ffff00" font-size="10">Base</text>
+                            
+                            <!-- Data Flow -->
+                            <line x1="150" y1="115" x2="150" y2="130" stroke="#ffff00" stroke-width="2">
+                                <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                            </line>
+                        </svg>
+                    </div>
+                    <h3>Agentic Framework in Customer Service</h3>
+                    <p>Advanced AI agent system that handles customer inquiries autonomously, learns from interactions, and provides personalized support experiences.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">AI Agents</span>
+                        <span class="tech-tag">Customer APIs</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <svg viewBox="0 0 300 200" class="project-svg">
+                            <defs>
+                                <linearGradient id="processGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ffff00;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Process Flow -->
+                            <rect x="20" y="80" width="40" height="40" fill="url(#processGrad)" rx="8" opacity="0.8">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                            </rect>
+                            <text x="40" y="105" text-anchor="middle" fill="white" font-size="12">📊</text>
+                            
+                            <!-- Arrow -->
+                            <polygon points="70,95 90,85 90,90 110,90 110,100 90,100 90,105" fill="#00ffff">
+                                <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+                            </polygon>
+                            
+                            <!-- Automation Engine -->
+                            <circle cx="150" cy="100" r="30" fill="none" stroke="url(#processGrad)" stroke-width="3">
+                                <animateTransform attributeName="transform" type="rotate" values="0 150 100;360 150 100" dur="4s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="150" cy="100" r="15" fill="url(#processGrad)" opacity="0.6"/>
+                            <text x="150" y="105" text-anchor="middle" fill="white" font-size="16">⚙️</text>
+                            
+                            <!-- Arrow -->
+                            <polygon points="190,95 210,85 210,90 230,90 230,100 210,100 210,105" fill="#00ffff">
+                                <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                            </polygon>
+                            
+                            <!-- Output -->
+                            <rect x="240" y="80" width="40" height="40" fill="url(#processGrad)" rx="8" opacity="0.8">
+                                <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" begin="1s" repeatCount="indefinite"/>
+                            </rect>
+                            <text x="260" y="105" text-anchor="middle" fill="white" font-size="12">📈</text>
+                            
+                            <!-- Efficiency Indicators -->
+                            <circle cx="150" cy="50" r="5" fill="#00ff00">
+                                <animate attributeName="opacity" values="0.3;1;0.3" dur="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="130" cy="40" r="3" fill="#00ff00">
+                                <animate attributeName="opacity" values="0.3;1;0.3" dur="1s" begin="0.3s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="170" cy="45" r="4" fill="#00ff00">
+                                <animate attributeName="opacity" values="0.3;1;0.3" dur="1s" begin="0.6s" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                    </div>
+                    <h3>Business Process Automation</h3>
+                    <p>Comprehensive automation solution that streamlines workflows, reduces manual tasks, and optimizes business operations through intelligent process mapping.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">RPA</span>
+                        <span class="tech-tag">Workflow APIs</span>
+                        <span class="tech-tag">Process Mining</span>
+                    </div>
                 </div>
             </div>
-            <div class="skills-grid">
-                <div class="skill-item">UI/UX Design</div>
-                <div class="skill-item">Product Strategy</div>
-                <div class="skill-item">Motion Graphics</div>
-                <div class="skill-item">Prototyping</div>
-                <div class="skill-item">Branding</div>
-                <div class="skill-item">Webflow</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="portfolio" class="portfolio-section">
-        <div class="container">
-            <h2 class="section-title">My Visionary Projects</h2>
-            <div class="portfolio-grid">
-                <a href="project-detail-1.html" class="portfolio-item">
-                    <img src="images/project-1-thumbnail.jpg" alt="Project 1: [Project Name]">
-                    <div class="item-overlay">
-                        <h3>[Project Name 1]</h3>
-                        <p>[Category, e.g., UI/UX App]</p>
-                        <span class="view-project-btn">View Case Study &rarr;</span>
-                    </div>
-                </a>
-                <a href="project-detail-2.html" class="portfolio-item">
-                    <img src="images/project-2-thumbnail.jpg" alt="Project 2: [Project Name]">
-                    <div class="item-overlay">
-                        <h3>[Project Name 2]</h3>
-                        <p>[Category, e.g., Web Platform Redesign]</p>
-                        <span class="view-project-btn">View Case Study &rarr;</span>
-                    </div>
-                </a>
-                <a href="project-detail-3.html" class="portfolio-item">
-                    <img src="images/project-3-thumbnail.jpg" alt="Project 3: [Project Name]">
-                    <div class="item-overlay">
-                        <h3>[Project Name 3]</h3>
-                        <p>[Category, e.g., Interactive Kiosk]</p>
-                        <span class="view-project-btn">View Case Study &rarr;</span>
-                    </div>
-                </a>
-                <a href="project-detail-4.html" class="portfolio-item">
-                    <img src="images/project-4-thumbnail.jpg" alt="Project 4: [Project Name]">
-                    <div class="item-overlay">
-                        <h3>[Project Name 4]</h3>
-                        <p>[Category, e.g., Brand Identity]</p>
-                        <span class="view-project-btn">View Case Study &rarr;</span>
-                    </div>
-                </a>
-                <a href="project-detail-5.html" class="portfolio-item">
-                    <img src="images/project-5-thumbnail.jpg" alt="Project 5: [Project Name]">
-                    <div class="item-overlay">
-                        <h3>[Project Name 5]</h3>
-                        <p>[Category, e.g., Data Visualization]</p>
-                        <span class="view-project-btn">View Case Study &rarr;</span>
-                    </div>
-                </a>
-                <a href="project-detail-6.html" class="portfolio-item">
-                    <img src="images/project-6-thumbnail.jpg" alt="Project 6: [Project Name]">
-                    <div class="item-overlay">
-                        <h3>[Project Name 6]</h3>
-                        <p>[Category, e.g., Motion UI]</p>
-                        <span class="view-project-btn">View Case Study &rarr;</span>
-                    </div>
-                </a>
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2>Core Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-icon">📊</div>
+                    <h3>Digital Marketing Strategy</h3>
+                    <p>SEO, SEM, Social Media, Content Marketing</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🤖</div>
+                    <h3>Marketing Automation</h3>
+                    <p>AI Tools, Campaign Automation, Lead Nurturing</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">📈</div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Google Analytics, Data Visualization, ROI Analysis</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Process Optimization</h3>
+                    <p>Workflow Automation, CRM Integration, Efficiency</p>
+                </div>
             </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Get In Touch</h2>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Simulate form submission
+            const submitBtn = event.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent! ✓';
+                submitBtn.style.background = 'linear-gradient(45deg, #00ff00, #00aa00)';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = 'linear-gradient(45deg, #ff00ff, #00ffff)';
+                    event.target.reset();
+                }, 2000);
+            }, 1500);
+        }
+
+        // Add parallax effect to background layers
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const layers = document.querySelectorAll('.bg-layer');
+            
+            layers.forEach((layer, index) => {
+                const speed = (index + 1) * 0.1;
+                layer.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Image upload handler
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const profilePhoto = document.getElementById('profilePhoto');
+                    const defaultAvatar = document.getElementById('defaultAvatar');
+                    
+                    // Create image element
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = 'Profile Photo';
+                    
+                    // Replace SVG with image
+                    profilePhoto.innerHTML = '';
+                    profilePhoto.appendChild(img);
+                    
+                    // Hide upload overlay after successful upload
+                    const overlay = document.querySelector('.upload-overlay');
+                    overlay.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Add interactive hover effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(-10px) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'985eb68a93545492',t:'MTc1OTAxNTAzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
